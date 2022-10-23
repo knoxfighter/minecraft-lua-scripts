@@ -1,5 +1,6 @@
 require("Player")
 require("globals")
+require("Statistics")
 
 local innerArenaRoom = {
     Min = { x = -3705, y = 64, z = -18 },
@@ -147,6 +148,13 @@ function GameObject:GameRunningTick()
                 room:OpenDoor()
             end
 
+            -- "kill" last player
+            player.rank = 1
+            self.DeadPlayers[playerName] = player
+
+            -- save game to stats
+            addPlayersToStatistic(self.DeadPlayers)
+
             self.gameState= State.GameStopped
         end
     end
@@ -158,13 +166,16 @@ function GameObject:GameStoppedTick()
     -- if no player is left in the arena, close all doors and go back to preparing stage
     local currentPlayers = detector.getPlayersInCoords(innerArenaRoom.Min, innerArenaRoom.Max)
 
-    local playersLeft = false
-    for _, _ in pairs(currentPlayers) do
-        playersLeft = true
-        break
+    for playerName, _ in pairs(self.DeadPlayers) do
+        -- all players have to move back into the room to loot their tombstones
+        if has_value(currentPlayers, playerName) then
+            self.DeadPlayers[playerName] = nil
+            break
+        end
     end
 
-    if not playersLeft then
+    -- reset when all players left the room
+    if #currentPlayers == 0 and not next(self.DeadPlayers) then
         -- close doors again
         for _, room in pairs(self.rooms) do
             room:CloseDoor()
@@ -174,7 +185,7 @@ function GameObject:GameStoppedTick()
         self.gameState = State.GamePreparing
     end
 
-    sleep(0.05)
+    sleep(0.1)
 end
 
 function GameObject:tick()
