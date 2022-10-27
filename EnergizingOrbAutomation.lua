@@ -14,7 +14,10 @@ local supportedRecipes = {
 	{"emendatusenigmatica:dimensional_block", "minecraft:ender_pearl", "integrateddynamics:crystalized_chorus_lock"},
 	{"atum:osiris_godshard", "emendatusenigmatica:uranium_dust"},
 	{"ars_nouveau:wixie_charm", "refinedstorage:raw_advanced_processor"},
-	{"astralsorcery:resonating_gem", "astralsorcery:stardust"}
+	{"astralsorcery:resonating_gem", "astralsorcery:stardust"},
+	{"emendatusenigmatica:dimensional_block", "minecraft:diamond", "integrateddynamics:crystalized_menril_block"},
+	{"rftoolsbase:machine_base", "powah:capacitor_blazing"},
+	{"powah:crystal_blazing", "bloodmagic:weakbloodshard", "minecraft:nether_star"}
 }
 
 function getRecipe(item)
