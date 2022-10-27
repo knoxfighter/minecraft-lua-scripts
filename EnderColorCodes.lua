@@ -90,6 +90,16 @@ newRow()
 colouredTextCentered(colours.white, "Wool", 4) -- length: 4
 writeColours(colours.brown, colours.yellow, colours.red, 16) -- length: 16
 
+-- System Import
+newRow()
+colouredTextCentered(colours.white, "System Import", 13)
+writeColours(colours.cyan, colours.orange, colours.yellow, 18)
+
+-- Sharing
+newRow()
+colouredTextCentered(colours.white, "Sharing Pouch", 13)
+writeColours(colours.cyan, colours.red, colours.yellow, 15)
+
 newRow()
 -- Unused chest
 colouredTextCentered(colours.grey, "Unused Chest", 12) -- length: 12
