@@ -13,15 +13,15 @@ while true do
 			input.pushItems(peripheral.getName(throughput), slot)
 		end
 		
-		sleep(0.5)
+		sleep(0.8)
 		
 		redstone.setAnalogOutput(arrowSide, 15)
 		
-		sleep(1)
+		sleep(2)
 		
 		redstone.setAnalogOutput(arrowSide, 0)
 		
-		sleep(2)
+		sleep(3)
 	else
 		os.pullEvent("redstone")
 	end
