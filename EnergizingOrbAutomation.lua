@@ -17,7 +17,8 @@ local supportedRecipes = {
 	{"astralsorcery:resonating_gem", "astralsorcery:stardust"},
 	{"emendatusenigmatica:dimensional_block", "minecraft:diamond", "integrateddynamics:crystalized_menril_block"},
 	{"rftoolsbase:machine_base", "powah:capacitor_blazing"},
-	{"powah:crystal_blazing", "bloodmagic:weakbloodshard", "minecraft:nether_star"}
+	{"powah:crystal_blazing", "bloodmagic:weakbloodshard", "minecraft:nether_star"},
+	{"emendatusenigmatica:enderium_plate", "minecraft:netherite_ingot", "minecraft:iron_block"}
 }
 
 function getRecipe(item)
