@@ -53,6 +53,16 @@ local recipes = {
         [6] = "botania:pixie_dust",
         [7] = "ars_nouveau:glyph_pickup",
         [8] = "botania:pixie_dust"
+    },
+    ["botania:gaia_ingot"] = {
+        [1] = "botania:life_essence",
+        [2] = "atum:seth_godshard",
+        [3] = "botania:life_essence",
+        [4] = "atum:seth_godshard",
+        [5] = "atum:seth_godshard",
+        [6] = "botania:life_essence",
+        [7] = "atum:seth_godshard",
+        [8] = "botania:life_essence"
     }
 }
 
