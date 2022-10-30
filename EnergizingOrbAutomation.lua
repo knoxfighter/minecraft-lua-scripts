@@ -2,69 +2,44 @@ local inputSide = "left"
 local workSide = "back"
 local outputSide = "top"
 local redstoneSide = "front"
+local redstoneOutput = "right"
 
+---@type PeripheralInventory
 local input = peripheral.wrap(inputSide)
+---@type PeripheralInventory
 local output = peripheral.wrap(outputSide)
+---@type PeripheralInventory
 local work = peripheral.wrap(workSide)
 
-local supportedRecipes = {
-	{"undergarden:froststeel_block", "emendatusenigmatica:electrum_block"},
-	{"ars_nouveau:blaze_fiber", "resourcefulbees:blaze_honeycomb"},
-	{"botania:ender_eye_block", "powah:dielectric_casing", "pneumaticcraft:spawner_core"},
-	{"emendatusenigmatica:dimensional_block", "minecraft:ender_pearl", "integrateddynamics:crystalized_chorus_lock"},
-	{"atum:osiris_godshard", "emendatusenigmatica:uranium_dust"},
-	{"ars_nouveau:wixie_charm", "refinedstorage:raw_advanced_processor"},
-	{"astralsorcery:resonating_gem", "astralsorcery:stardust"},
-	{"emendatusenigmatica:dimensional_block", "minecraft:diamond", "integrateddynamics:crystalized_menril_block"},
-	{"rftoolsbase:machine_base", "powah:capacitor_blazing"},
-	{"powah:crystal_blazing", "bloodmagic:weakbloodshard", "minecraft:nether_star"},
-	{"emendatusenigmatica:enderium_plate", "minecraft:netherite_ingot", "minecraft:iron_block"}
-}
-
-function getRecipe(item)
-	for _, recipe in pairs(supportedRecipes) do
-		for _, val in pairs(recipe) do
-			if val == item.name then
-				return recipe
-			end
-		end
-	end
+function unlockCrafter()
+	redstone.setOutput(redstoneOutput, true)
+	sleep(0.3)
+	redstone.setOutput(redstoneOutput, false)
+	sleep(0.3)
 end
 
-function contains(tab, val)
-	for _, v in pairs(tab) do
-		if v == val then
-			return true
-		end
-	end
-	return false
-end
+unlockCrafter()
 
 while true do
 	local rsIn = redstone.getAnalogInput(redstoneSide)
 	if rsIn > 0 then
-		print("move all items into orb")
-		local currentSlot = 2
-		local recipe = nil
+		-- move all items into the orb
+		local targetSlot = 1
 		for slot, item in pairs(input.list()) do
-			if recipe == nil then
-				recipe = getRecipe(item)
-			end
-			
-			for i=1,item.count do
-				if contains(recipe, item.name) then
-					input.pushItems(peripheral.getName(work), slot, 1, currentSlot)
-					currentSlot = currentSlot + 1
-				end
+			for i = 0, item.count do
+				input.pushItems(workSide, slot, 1, targetSlot)
+				targetSlot = targetSlot + 1
 			end
 		end
 		
-		print("wait for output")
+		print("wait for output ...")
 		while true do
 			local res = work.getItemDetail(1)
 			if res then
 				print("output found")
-				work.pushItems(peripheral.getName(output), 1)
+				work.pushItems(outputSide, 1)
+
+				unlockCrafter()
 				break
 			end
 		end
