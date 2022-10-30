@@ -60,40 +60,46 @@ end
 colouredTextCentered(colours.white, "Milk", 4)
 writeColours(colours.cyan, colours.black, colours.blue, 15) -- length: 15
 
-newRow()
 -- Menril Resin
+newRow()
 colouredTextCentered(colours.lightBlue, "Menril Resin", 12) -- length: 12
 writeColours(colours.blue, colours.blue, colours.blue, 14) -- length: 14
 
-newRow()
 -- Liquid Chorus
+newRow()
 colouredTextCentered(colours.purple, "Liquid Chorus", 13) -- length: 13
 writeColours(colours.pink, colours.pink, colours.pink, 14) -- length: 14
 
-newRow()
 -- Latex
+newRow()
 colouredTextCentered(colours.white, "Latex", 5) -- length: 5
 writeColours(colours.white, colours.white, colours.black, 17) -- length: 17
 
+-- resin
 newRow()
+colouredTextCentered(colours.yellow, "Resin", 5)
+writeColours(colours.orange, colours.orange, colours.white, 19)
+
+
 -- skyslime
+newRow()
 colouredTextCentered(colours.lightBlue, "Skyslime", 8) -- length: 8
 writeColours(colours.blue, colours.blue, colours.white, 15) -- length: 15
 
-newRow()
 -- Wheat
+newRow()
 colouredTextCentered(colours.yellow, "Wheat", 5) -- length: 5
 writeColours(colours.purple, colours.orange, colours.red, 17) -- length: 17
 
-newRow()
 -- Wool
+newRow()
 colouredTextCentered(colours.white, "Wool", 4) -- length: 4
 writeColours(colours.brown, colours.yellow, colours.red, 16) -- length: 16
 
 -- System Import
-newRow()
-colouredTextCentered(colours.white, "System Import", 13)
-writeColours(colours.cyan, colours.orange, colours.yellow, 18)
+--newRow()
+--colouredTextCentered(colours.white, "System Import", 13)
+--writeColours(colours.cyan, colours.orange, colours.yellow, 18)
 
 -- Sharing
 newRow()

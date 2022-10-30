@@ -116,9 +116,13 @@ while true do
             local item = apparatus.getItemDetail(1)
             if item ~= nil and item.name ~= itemName then
                 outputChest.pullItems(apparatusName, 1, 1)
+                break
             end
         end
     else
+        print("Waiting for something to do")
+        print("--------------------")
         os.pullEvent("redstone")
+        print("yai, something to do")
     end
 end

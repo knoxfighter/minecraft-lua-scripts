@@ -21,7 +21,7 @@ end
 unlockCrafter()
 
 while true do
-	local rsIn = redstone.getAnalogInput(redstoneSide)
+	local rsIn = redstone.getAnalogInput(redstoneSide)p
 	if rsIn > 0 then
 		-- move all items into the orb
 		local targetSlot = 1
