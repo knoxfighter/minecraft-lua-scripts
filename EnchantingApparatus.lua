@@ -56,10 +56,6 @@ local recipes = {
     }
 }
 
-function findSlotForItem(chest, itemName)
-
-end
-
 ---@param item string
 ---@return boolean, table<number, string>
 function findRecipeForItem(item)
