@@ -63,6 +63,16 @@ local recipes = {
         [6] = "botania:life_essence",
         [7] = "atum:seth_godshard",
         [8] = "botania:life_essence"
+    },
+    ["botania:mana_diamond"] = {
+        [1] = "botania:pixie_dust",
+        [2] = "integratedterminals:chorus_glass",
+        [3] = "botania:pixie_dust",
+        [4] = "naturesaura:token_fear",
+        [5] = "botania:rune_mana",
+        [6] = "botania:pixie_dust",
+        [7] = "integratedterminals:chorus_glass",
+        [8] = "botania:pixie_dust"
     }
 }
 
