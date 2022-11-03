@@ -80,11 +80,15 @@ newRow()
 colouredTextCentered(colours.yellow, "Resin", 5)
 writeColours(colours.orange, colours.orange, colours.white, 19)
 
-
 -- skyslime
 newRow()
 colouredTextCentered(colours.lightBlue, "Skyslime", 8) -- length: 8
 writeColours(colours.blue, colours.blue, colours.white, 15) -- length: 15
+
+-- ether gas
+newRow()
+colouredTextCentered(colours.lightBlue, "Ether Gas", 9)
+writeColours(colours.lightBlue, colours.white, colours.lightBlue, 25)
 
 -- Wheat
 newRow()

@@ -21,12 +21,14 @@ end
 unlockCrafter()
 
 while true do
-	local rsIn = redstone.getAnalogInput(redstoneSide)p
+	local rsIn = redstone.getAnalogInput(redstoneSide)
 	if rsIn > 0 then
 		-- move all items into the orb
-		local targetSlot = 1
+		local targetSlot = 2
 		for slot, item in pairs(input.list()) do
-			for i = 0, item.count do
+			print(item.count)
+			for i = 1, item.count do
+				print("move item from ", slot, " to ", targetSlot)
 				input.pushItems(workSide, slot, 1, targetSlot)
 				targetSlot = targetSlot + 1
 			end
