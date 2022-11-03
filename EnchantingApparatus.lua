@@ -54,7 +54,7 @@ local recipes = {
         [7] = "ars_nouveau:glyph_pickup",
         [8] = "botania:pixie_dust"
     },
-    ["botania:gaia_ingot"] = {
+    ["botania:terrasteel_ingot"] = {
         [1] = "botania:life_essence",
         [2] = "atum:seth_godshard",
         [3] = "botania:life_essence",
@@ -135,7 +135,9 @@ while true do
         while true do
             local item = apparatus.getItemDetail(1)
             if item ~= nil and item.name ~= itemName then
-                outputChest.pullItems(apparatusName, 1, 1)
+				print("move item out of apparatus")
+                local num = outputChest.pullItems(apparatusName, 1)
+				print("amount of items moved out: ", num)
                 break
             end
         end
