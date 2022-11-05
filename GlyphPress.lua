@@ -28,16 +28,15 @@ while true do
         -- get first and second item
         local first, second = getItems()
 
-        print(first .. " -- " .. second)
-
         -- move first item (clay) into output
-        inputChest.pushItems(clayOutputName, first, 1)
+        if inputChest.pushItems(clayOutputName, first, 1) > 0 then
 
-        -- move second item into router
-        --inputChest.pushItems(peripheral.getName(clickOutput), second, 1)
-        clickOutput.pullItems(inputChestName, second, 1)
+            -- move second item into router
+            --inputChest.pushItems(peripheral.getName(clickOutput), second, 1)
+            clickOutput.pullItems(inputChestName, second, 1)
+        end
 
-        sleep(30)
+        sleep(1)
     else
         os.pullEvent("redstone")
     end

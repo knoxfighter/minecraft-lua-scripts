@@ -689,6 +689,11 @@ end
 ---@field name string
 ---@field nbt string hash of the nbt (not useful, only there as unique identifier)
 
+---@class PeripheralInventoryComplexItem : PeripheralInventoryItem
+---@field tags table<string, boolean>
+---@field maxCount number
+---@field displayName string
+
 ---List all items in this inventory. This returns a table, with an entry for each slot.
 ---
 ---Each item in the inventory is represented by a table containing some basic information, much like turtle.getItemDetail includes. More information can be fetched with getItemDetail. The table contains the item name, the count and an a (potentially nil) hash of the item's nbt. This NBT data doesn't contain anything useful, but allows you to distinguish identical items.
@@ -705,7 +710,7 @@ end
 ---
 ---Some items include more information (such as enchantments) - it is recommended to print it out using textutils.serialize or in the Lua REPL, to explore what is available.
 ---@param slot number The slot to get information about.
----@return PeripheralInventoryItem|nil Information about the item in this slot, or nil if not present.
+---@return PeripheralInventoryComplexItem|nil Information about the item in this slot, or nil if not present.
 function PeripheralInventory.getItemDetail(slot)
     return nil
 end

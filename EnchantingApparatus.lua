@@ -73,6 +73,12 @@ local recipes = {
         [6] = "botania:pixie_dust",
         [7] = "integratedterminals:chorus_glass",
         [8] = "botania:pixie_dust"
+    },
+    ["emendatusenigmatica:sulfur_dust"] = {
+        [1] = "emendatusenigmatica:silver_dust",
+        [2] = "emendatusenigmatica:silver_dust",
+        [3] = "emendatusenigmatica:silver_dust",
+        [4] = "emendatusenigmatica:silver_dust",
     }
 }
 
