@@ -17,12 +17,12 @@ function wrapPs(peripheralName)
   if periTab~={} then
     return periTab,sideTab
   else
-  return nil
+    return nil
   end
 end
  
 --String of the title of the monitor
-label = "AutomaticAutocraft"
+label = "Automatic Autocraft"
  
 -- me Bridge
 me = wrapPs("rsBridge")[1]
@@ -35,7 +35,8 @@ assert(mon, "Monitor not found")
 -- Name(Just a name, you can type everything), minecraft name, minimum amount
 meItems = {
 {"Plastic","industrialforegoing:plastic",64},
-{"Plastic","pneumaticcraft:plastic", 64},
+{"Plastic","pneumaticcraft:plastic", 128},
+{"Quartz Enriched Iron", "refinedstorage:quartz_enriched_iron", 128},
 {"Improved Processor","refinedstorage:improved_processor", 64},
 {"Basic Processor","refinedstorage:basic_processor", 64},
 {"Advanced Processor","refinedstorage:advanced_processor", 64},
@@ -43,6 +44,7 @@ meItems = {
 {"Pattern","refinedstorage:pattern",64},
 {"Nether Quartz","minecraft:quartz",128},
 {"Cake","minecraft:cake",32},
+{"Livingrock", "botania:livingrock", 64},
 }
  
 --Checks the item and craft more of it if too few exist
