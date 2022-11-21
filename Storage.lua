@@ -45,6 +45,8 @@ meItems = {
 {"Nether Quartz","minecraft:quartz",128},
 {"Cake","minecraft:cake",32},
 {"Livingrock", "botania:livingrock", 64},
+{"RS Cable", "refinedstorage:cable", 128},
+{"Energized Steel", "powah:energized_steel_block", 32}
 }
  
 --Checks the item and craft more of it if too few exist
@@ -57,10 +59,10 @@ function checkMe(checkName, name, low)
 	
 	if gettedItem then
       if gettedItem.amount <= low-1 then
-	    local printColor = colors.red
+	    local printColor = colors.orange
         if me.isItemCrafting(checkName) == false then -- checks if already a job for the item exists
           if not me.craftItem({name = checkName, count = low-gettedItem.amount}) then
-		    printColor = colors.orange
+		    printColor = colors.red
 		  end
           print("Craft ".. low-gettedItem.amount .. " ".. name) --A Log message which appears in the computer
         end
@@ -70,7 +72,7 @@ function checkMe(checkName, name, low)
         CenterT(gettedItem.amount.. "/".. low ,row+1, colors.black, colors.green,"right")
       end
 	else
-	  CenterT("??/".. low ,row+1, colors.black, colors.orange,"right")
+	  CenterT("??/".. low ,row+1, colors.black, colors.red,"right")
 	end
   end
 end

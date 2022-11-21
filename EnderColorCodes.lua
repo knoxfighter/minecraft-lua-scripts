@@ -100,6 +100,21 @@ newRow()
 colouredTextCentered(colours.white, "Wool", 4) -- length: 4
 writeColours(colours.brown, colours.yellow, colours.red, 16) -- length: 16
 
+-- Atum Excavator
+newRow()
+colouredTextCentered(colours.yellow, "Nebu Excavator", 14)
+writeColours(colours.yellow, colours.brown, colours.yellow, 19)
+
+-- Beryl Excavator
+newRow()
+colouredTextCentered(colours.blue, "Beryl Excavator", 15)
+writeColours(colours.blue, colours.yellow, colours.blue, 16)
+
+-- Enderslime
+newRow()
+colouredTextCentered(colours.purple, "Enderslime", 10)
+writeColours(colours.purple, colours.purple, colours.purple, 20)
+
 -- System Import
 --newRow()
 --colouredTextCentered(colours.white, "System Import", 13)
