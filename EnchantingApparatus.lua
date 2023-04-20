@@ -79,7 +79,47 @@ local recipes = {
         [2] = "emendatusenigmatica:silver_dust",
         [3] = "emendatusenigmatica:silver_dust",
         [4] = "emendatusenigmatica:silver_dust",
-    }
+    },
+	["occultism:wormhole_frame"] = {
+		[1] = "atum:nebu_drop",
+		[2] = "atum:nebu_drop",
+		[3] = "atum:nebu_drop",
+		[4] = "atum:nebu_drop",
+		[5] = "naturesaura:upright_on_belt",
+		[6] = "naturesaura:upright_on_belt",
+		[7] = "naturesaura:upright_on_belt",
+		[8] = "naturesaura:upright_on_belt",
+	},
+	["occultism:otherstone_frame"] = {
+		[1] = "atum:nebu_drop",
+		[2] = "atum:nebu_drop",
+		[3] = "atum:nebu_drop",
+		[4] = "atum:nebu_drop",
+		[5] = "naturesaura:aura_bottle",
+		[6] = "naturesaura:aura_bottle",
+		[7] = "naturesaura:aura_bottle",
+		[8] = "naturesaura:aura_bottle",
+	},
+	["botania:livingwood"] = {
+		[1] = "bloodmagic:blankslate",
+		[2] = "bloodmagic:blankslate",
+		[3] = "bloodmagic:blankslate",
+		[4] = "bloodmagic:blankslate",
+		[5] = "bloodmagic:blankslate",
+		[6] = "bloodmagic:blankslate",
+		[7] = "eidolon:ender_calx",
+		[8] = "eidolon:ender_calx",
+	},
+	["atum:atem_godshard"] = {
+		[1] = "betterendforge:ender_shard",
+		[2] = "betterendforge:ender_shard",
+		[3] = "betterendforge:ender_shard",
+		[4] = "betterendforge:ender_shard",
+		[5] = "betterendforge:crystal_shards",
+		[6] = "betterendforge:crystal_shards",
+		[7] = "betterendforge:crystal_shards",
+		[8] = "betterendforge:crystal_shards",
+	}
 }
 
 ---@param item string

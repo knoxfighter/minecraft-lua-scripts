@@ -1,5 +1,5 @@
-local redstoneSide = "left"
-local inputSide = "back"
+local redstoneSide = "back"
+local inputSide = "left"
 local altarSide = "right"
 local outputSide = "top"
 

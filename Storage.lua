@@ -37,14 +37,15 @@ meItems = {
 {"Plastic","industrialforegoing:plastic",64},
 {"Plastic","pneumaticcraft:plastic", 128},
 {"Quartz Enriched Iron", "refinedstorage:quartz_enriched_iron", 128},
-{"Improved Processor","refinedstorage:improved_processor", 64},
-{"Basic Processor","refinedstorage:basic_processor", 64},
-{"Advanced Processor","refinedstorage:advanced_processor", 64},
+{"Improved Processor","refinedstorage:improved_processor", 256},
+{"Basic Processor","refinedstorage:basic_processor", 256},
+{"Advanced Processor","refinedstorage:advanced_processor", 256},
 -- {"Chromatic Component","create:chromatic_compound", 32}, -- broken :(
 {"Pattern","refinedstorage:pattern",64},
-{"Nether Quartz","minecraft:quartz",128},
+--{"Nether Quartz","minecraft:quartz",128}, -- not needed anymore
 {"Cake","minecraft:cake",32},
 {"Livingrock", "botania:livingrock", 64},
+{"Livingwood", "botania:livingwood", 64},
 {"RS Cable", "refinedstorage:cable", 128},
 {"Energized Steel", "powah:energized_steel_block", 32}
 }

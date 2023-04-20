@@ -110,10 +110,17 @@ newRow()
 colouredTextCentered(colours.blue, "Beryl Excavator", 15)
 writeColours(colours.blue, colours.yellow, colours.blue, 16)
 
+-- Nether Excavator
+newRow()
+colouredTextCentered(colours.red, "Nether Excavator", 16)
+writeColours(colours.red, colours.red, colours.red, 11)
+
 -- Enderslime
 newRow()
 colouredTextCentered(colours.purple, "Enderslime", 10)
 writeColours(colours.purple, colours.purple, colours.purple, 20)
+
+-- 
 
 -- System Import
 --newRow()

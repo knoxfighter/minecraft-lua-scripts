@@ -22,7 +22,7 @@ local drawer = peripheral.wrap(drawerName)
 ---@param item PeripheralInventoryComplexItem
 ---@return boolean
 function isSapling(item)
-    return item.tags["minecraft:saplings"]
+    return item.tags["minecraft:saplings"] and item.name ~= "atum:palm_sapling"
 end
 
 while true do

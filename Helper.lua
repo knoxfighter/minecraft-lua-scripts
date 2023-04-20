@@ -693,6 +693,8 @@ end
 ---@field tags table<string, boolean>
 ---@field maxCount number
 ---@field displayName string
+---@field maxDamage number
+---@field damage number
 
 ---List all items in this inventory. This returns a table, with an entry for each slot.
 ---
