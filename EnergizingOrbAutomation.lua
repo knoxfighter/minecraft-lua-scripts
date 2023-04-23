@@ -33,6 +33,8 @@ while true do
 				targetSlot = targetSlot + 1
 			end
 		end
+
+		unlockCrafter()
 		
 		print("wait for output ...")
 		while true do
@@ -40,8 +42,6 @@ while true do
 			if res then
 				print("output found")
 				work.pushItems(outputSide, 1)
-
-				unlockCrafter()
 				break
 			end
 		end

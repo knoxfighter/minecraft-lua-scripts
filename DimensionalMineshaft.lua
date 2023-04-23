@@ -7,6 +7,10 @@ local mineshaftNames = {
 	"occultism:dimensional_mineshaft_1",
 	"occultism:dimensional_mineshaft_2",
 	"occultism:dimensional_mineshaft_3",
+	"occultism:dimensional_mineshaft_4",
+	"occultism:dimensional_mineshaft_5",
+	"occultism:dimensional_mineshaft_6",
+	"occultism:dimensional_mineshaft_7",
 }
 
 ---@type PeripheralInventory[]

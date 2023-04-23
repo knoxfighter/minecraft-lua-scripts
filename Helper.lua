@@ -753,3 +753,40 @@ end
 function PeripheralInventory.pullItems(fromName, fromSlot, limit, toSlot)
     return nil
 end
+
+---@class PeripheralFluidStorage
+local PeripheralFluidStorage = {}
+
+---Get all "tanks" in this fluid storage.
+---
+---Each tank either contains some amount of fluid or is empty. Tanks with fluids inside will return some basic information about the fluid, including its name and amount.
+---
+---The returned table is sparse, and so empty tanks will be nil - it is recommended to loop over using pairs rather than ipairs.
+---@return table|nil
+function PeripheralFluidStorage.tanks()
+    return nil
+end
+
+---Move a fluid from one fluid container to another connected one.
+---
+---This allows you to pull fluid in the current fluid container to another container on the same wired network. Both containers must attached to wired modems which are connected via a cable.
+---@param toName string The name of the peripheral/container to push to. This is the string given to `peripheral.wrap`, and displayed by the wired modem.
+---@param limit number The maximum amount of fluid to move.
+---@param fluidName string The fluid to move. If not given, an arbitrary fluid will be chosen.
+---@overload fun(toName:string):number
+---@overload fun(toName:string, limit:number):number
+---@return number The amount of moved fluid.
+function PeripheralFluidStorage.pushFluid(toName, limit, fluidName)
+    return nil
+end
+
+---Move a fluid from one fluid container to another connected one.
+---
+---This allows you to pull fluid in the current fluid container to another container on the same wired network. Both containers must attached to wired modems which are connected via a cable.
+---@param toName string The name of the peripheral/container to push to. This is the string given to `peripheral.wrap`, and displayed by the wired modem.
+---@param limit number The maximum amount of fluid to move.
+---@param fluidName string The fluid to move. If not given, an arbitrary fluid will be chosen.
+---@return number The amount of moved fluid.
+function PeripheralFluidStorage.pullFluid(toName, limit, fluidName)
+    return nil
+end
