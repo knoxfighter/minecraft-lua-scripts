@@ -14,7 +14,7 @@ while true do
             local maxCount = drawer.getItemLimit(i)
             local perc = item.count / maxCount
 			
-			if item.name == "minecraft:quartz" or item.name == "quark:elder_prismarine" then
+			if item.name == "minecraft:quartz" or item.name == "quark:elder_prismarine" or "minecraft:prismarine" or "astralsorcery:aquamarine" then
 				-- continue
 			else
 				if perc >= 0.85 and perc < 0.98 then
