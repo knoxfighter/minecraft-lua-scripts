@@ -1,29 +1,15 @@
----@type string[]
-local pedestalNames = {
-    "ars_nouveau:arcane_pedestal_1",
-    "ars_nouveau:arcane_pedestal_2",
-    "ars_nouveau:arcane_pedestal_3",
-    "ars_nouveau:arcane_pedestal_4",
-    "ars_nouveau:arcane_pedestal_5",
-    "ars_nouveau:arcane_pedestal_6",
-    "ars_nouveau:arcane_pedestal_7",
-    "ars_nouveau:arcane_pedestal_8"
-}
+local pedestalType = "ars_nouveau:arcane_pedestal"
+local apparatusType = "ars_nouveau:enchanting_apparatus"
 
-local apparatusName = "ars_nouveau:enchanting_apparatus_1"
-local inputChestName = "quark:variant_chest_3"
-local outputChestName = "quark:variant_chest_2"
-local redstoneSide = "front"
+local inputChestName = "minecraft:chest_4"
+local outputChestName = "minecraft:chest_3"
+local redstoneSide = "back"
 
 ---@type PeripheralInventory[]
-local pedestals = {}
-
-for i, name in pairs(pedestalNames) do
-    pedestals[i] = peripheral.wrap(name)
-end
+local pedestals = {peripheral.find(pedestalType)}
 
 ---@type PeripheralInventory
-local apparatus = peripheral.wrap(apparatusName)
+local apparatus = peripheral.find(apparatusType)
 ---@type PeripheralInventory
 local inputChest = peripheral.wrap(inputChestName)
 ---@type PeripheralInventory
@@ -121,6 +107,31 @@ local recipes = {
 		[8] = "betterendforge:crystal_shards",
 	}
 }
+---@type string[]
+--[[local centerItems = {
+	"ars_nouveau:wixie_shards",
+	"pedestals:coin/default",
+	"botania:terrasteel_ingot",
+	"botania:mana_diamond",
+	"emendatusenigmatica:sulfur_dust",
+	"occultism:wormhole_frame",
+	"occultism:otherstone_frame",
+	"botania:livingwood",
+	"atum:atem_godshard",
+	"betterendforge:eternal_crystal",
+	"minecraft:conduit",
+	"minecraft:netherite_ingot",
+	"betterendforge:silk_fiber",
+	"farmersdelight:cooking_pot",
+	"betterendforge:terminite_boots",
+	"betterendforge:terminite_chestplate",
+	"betterendforge:terminite_leggings",
+	"betterendforge:terminite_helmet",
+	"atum:relic_non_dirty/ring"
+}]]--
+local centerItems = {
+	"naturesaura:aura_bottle"
+}
 
 ---@param item string
 ---@return boolean, table<number, string>
@@ -156,25 +167,69 @@ function findItemInChest(chest, item)
     end
 end
 
+---@generic T
+---@param tab T[]
+---@param val T
+local function contains(tab, val)
+    for index, value in ipairs(tab) do
+        if value == val then
+            return true
+        end
+    end
+
+    return false
+end
+
+local function itemHasTagOrName(item)
+	if contains(centerItems, item.name) then
+		return true
+	end
+	
+	for tag, _ in pairs(item.tags) do
+		if contains(centerItems, tag) then
+			return true
+		end
+	end
+	
+	return false
+end
+
+function findCenterItemInChest()
+	for slot, item in pairs(inputChest.list()) do
+		local complexItem = inputChest.getItemDetail(slot)
+        if itemHasTagOrName(complexItem) and item.count == 1 then
+            return slot
+        end
+    end
+end
+
 while true do
     local rsIn = redstone.getAnalogInput(redstoneSide)
     if rsIn > 0 then
         -- TODO: check if there is manual crafting in place
 
         -- get recipe
-        local slot, itemName, recipe = findRecipeInChest(inputChest)
+        local centerSlot = findCenterItemInChest()
+		if centerSlot == nil then
+			error("centerSlot item not found!")
+		end
 
-        -- put items into spots
-        for i, itemName in pairs(recipe) do
-            local slot = findItemInChest(inputChest, itemName)
-            if inputChest.pushItems(pedestalNames[i], slot, 1) == 0 then
-                error("item in slot '" .. slot .. "' wasn't moved into pedestal '" .. i .. "'")
-            end
-        end
+        -- put all other items into spots
+		local j = 1
+		for slot, item in pairs(inputChest.list()) do
+			if slot ~= centerSlot then
+				for i=1,item.count do
+					if inputChest.pushItems(peripheral.getName(pedestals[j]), slot, 1) == 0 then
+						error("item in slot '" .. slot .. "' wasn't moved into pedestal '" .. i .. "'")
+					end
+					j = j + 1
+				end
+			end
+		end
 
         -- put last item
-        if inputChest.pushItems(apparatusName, slot, 1) == 0 then
-            error("item in slot '" .. slot .. "' wasn't moved into the apparatus")
+        if inputChest.pushItems(peripheral.getName(apparatus), centerSlot, 1) == 0 then
+            error("item in slot '" .. centerSlot .. "' wasn't moved into the apparatus")
         end
 
         -- wait for output item and move it out
@@ -182,7 +237,7 @@ while true do
             local item = apparatus.getItemDetail(1)
             if item ~= nil and item.name ~= itemName then
 				print("move item out of apparatus")
-                local num = outputChest.pullItems(apparatusName, 1)
+                local num = outputChest.pullItems(peripheral.getName(apparatus), 1)
 				print("amount of items moved out: ", num)
                 break
             end

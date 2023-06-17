@@ -1,5 +1,6 @@
 local drawerSide = "right"
 local chatBoxSide = "left"
+local lowWarnings = true
 
 ---@type PeripheralInventory
 local drawer = peripheral.wrap(drawerSide)
@@ -14,20 +15,32 @@ while true do
             local maxCount = drawer.getItemLimit(i)
             local perc = item.count / maxCount
 			
-			if item.name == "minecraft:quartz" or item.name == "quark:elder_prismarine" or "minecraft:prismarine" or "astralsorcery:aquamarine" then
+			--print("check", item.name, " -- ", perc)
+			
+			if item.name == "minecraft:quartz"
+			  or item.name == "quark:elder_prismarine"
+			  or item.name == "minecraft:prismarine"
+			  or item.name == "astralsorcery:aquamarine"
+			  or item.name == "minecraft:oak_log"
+			  then
 				-- continue
 			else
-				if perc >= 0.85 and perc < 0.98 then
-					-- show warning
-					chatBox.sendFormattedMessage('{"text":"' .. item.displayName .. ' is now over 85% full", "color":"#F2B233"}', "Metal Storage")
-					sleep(1.5)
-				elseif perc >= 0.98 then
+				if perc >= 0.98 then
 					-- show error
 					chatBox.sendFormattedMessage('{"text":"' .. item.displayName .. ' is now over 98% full", "color":"#FF0000"}', "Metal Storage")
 					sleep(1.5)
-				--elseif perc < 0.05 then
+				elseif perc >= 0.85 then
+					-- show warning
+					chatBox.sendFormattedMessage('{"text":"' .. item.displayName .. ' is now over 85% full", "color":"#F2B233"}', "Metal Storage")
+					sleep(1.5)
+				elseif lowWarnings and item.count < 250 then
 					-- show low warning
-				--	chatBox.sendFormattedMessage('{"text":"' .. item.displayName .. ' is running out!", "color":"#F2B233"}', "Metal Storage")
+					chatBox.sendFormattedMessage('{"text":"' .. item.displayName .. ' is running out (<250)!!!", "color":"#FF0000"}', "Metal Storage")
+					sleep(1.5)
+				elseif lowWarnings and item.count < 750 then
+					-- show low warning
+					chatBox.sendFormattedMessage('{"text":"' .. item.displayName .. ' is running out (<750)!", "color":"#F2B233"}', "Metal Storage")
+					sleep(1.5)
 				end
 			end
         end

@@ -1,19 +1,41 @@
-local monitor = peripheral.find("monitor")
+local partAmount = 3
 
-monitor.clear()
-monitor.setTextScale(1)
+local mainMonitor = peripheral.find("monitor")
 
-local x, y = monitor.getSize()
+mainMonitor.clear()
+mainMonitor.setTextScale(1)
 
+local monitorX, monitorY = mainMonitor.getSize()
+print("Monitor: {", monitorX, ", ", monitorY, "}")
+local monitorXPart = monitorX/partAmount
+local monitorParts = {}
+for i=1,partAmount do
+	local width = math.floor(monitorX / partAmount)
+	local startPos = width * (i - 1) + 1
+	monitorPart = window.create(mainMonitor, startPos, 1, width, monitorY)
+	table.insert(monitorParts, monitorPart)
+end
+
+local x,y
 local row = 0
+local monitor
+local currentMonitor = 1
+
+local function setNextMonitor()
+	monitor = monitorParts[currentMonitor]
+	x, y = monitor.getSize()
+	row = 0
+	currentMonitor = currentMonitor + 1
+	monitor.setCursorPos(1, 1)
+end
 
 function newRow()
 	row = row + 1
 	return row
 end
 
-function colouredTextCentered(colour, text, textSize)
-	monitor.setCursorPos(x/2 - textSize/2, newRow())
+function colouredTextCentered(colour, text)
+	monitor.setCursorPos(x/2 - string.len(text)/2, newRow())
 	colouredText(colour, text)
 end
 
@@ -25,13 +47,20 @@ function colouredText(colour, text)
 	monitor.write(text)
 end
 
-function writeColours(colour1, colour2, colour3, textSize)
+function writeColours(colour1, colour2, colour3)
+	local text1 = getTextFromColour(colour1)
+	local text2 = getTextFromColour(colour2)
+	local text3 = getTextFromColour(colour3)
+	
+	local textSize = string.len(text1) + 1 + string.len(text2) + 1 + string.len(text3)
+	
 	monitor.setCursorPos(x/2 - textSize/2, newRow())
-	colouredText(colour1, getTextFromColour(colour1))
+	
+	colouredText(colour1, text1)
 	colouredText(colours.white, "/")
-	colouredText(colour2, getTextFromColour(colour2))
+	colouredText(colour2, text2)
 	colouredText(colours.white, "/")
-	colouredText(colour3, getTextFromColour(colour3))
+	colouredText(colour3, text3)
 end
 
 function getTextFromColour(colour)
@@ -53,86 +82,184 @@ function getTextFromColour(colour)
 	if colour == colours.black then return "Black" end
 end
 
+setNextMonitor()
+
 -- centered to 29
 -- 29/2 = 14.5
 
 -- Milk
-colouredTextCentered(colours.white, "Milk", 4)
-writeColours(colours.cyan, colours.black, colours.blue, 15) -- length: 15
+colouredTextCentered(colours.white, "Milk")
+writeColours(colours.cyan, colours.black, colours.blue) -- length: 15
 
 -- Menril Resin
 newRow()
-colouredTextCentered(colours.lightBlue, "Menril Resin", 12) -- length: 12
-writeColours(colours.blue, colours.blue, colours.blue, 14) -- length: 14
+colouredTextCentered(colours.lightBlue, "Menril Resin") -- length: 12
+writeColours(colours.blue, colours.blue, colours.blue) -- length: 14
 
 -- Liquid Chorus
 newRow()
-colouredTextCentered(colours.purple, "Liquid Chorus", 13) -- length: 13
-writeColours(colours.pink, colours.pink, colours.pink, 14) -- length: 14
+colouredTextCentered(colours.purple, "Liquid Chorus") -- length: 13
+writeColours(colours.pink, colours.pink, colours.pink) -- length: 14
 
 -- Latex
 newRow()
-colouredTextCentered(colours.white, "Latex", 5) -- length: 5
-writeColours(colours.white, colours.white, colours.black, 17) -- length: 17
+colouredTextCentered(colours.white, "Latex") -- length: 5
+writeColours(colours.white, colours.white, colours.black) -- length: 17
 
 -- resin
 newRow()
-colouredTextCentered(colours.yellow, "Resin", 5)
-writeColours(colours.orange, colours.orange, colours.white, 19)
+colouredTextCentered(colours.yellow, "Resin")
+writeColours(colours.orange, colours.orange, colours.white)
 
 -- skyslime
 newRow()
-colouredTextCentered(colours.lightBlue, "Skyslime", 8) -- length: 8
-writeColours(colours.blue, colours.blue, colours.white, 15) -- length: 15
+colouredTextCentered(colours.lightBlue, "Skyslime") -- length: 8
+writeColours(colours.blue, colours.blue, colours.white) -- length: 15
 
 -- ether gas
 newRow()
-colouredTextCentered(colours.lightBlue, "Ether Gas", 9)
-writeColours(colours.lightBlue, colours.white, colours.lightBlue, 25)
+colouredTextCentered(colours.lightBlue, "Ether Gas")
+writeColours(colours.lightBlue, colours.white, colours.lightBlue)
 
 -- Wheat
 newRow()
-colouredTextCentered(colours.yellow, "Wheat", 5) -- length: 5
-writeColours(colours.purple, colours.orange, colours.red, 17) -- length: 17
+colouredTextCentered(colours.yellow, "Wheat") -- length: 5
+writeColours(colours.purple, colours.orange, colours.red) -- length: 17
 
 -- Wool
 newRow()
-colouredTextCentered(colours.white, "Wool", 4) -- length: 4
-writeColours(colours.brown, colours.yellow, colours.red, 16) -- length: 16
+colouredTextCentered(colours.white, "Wool") -- length: 4
+writeColours(colours.brown, colours.yellow, colours.red) -- length: 16
 
 -- Atum Excavator
 newRow()
-colouredTextCentered(colours.yellow, "Nebu Excavator", 14)
-writeColours(colours.yellow, colours.brown, colours.yellow, 19)
+colouredTextCentered(colours.yellow, "Nebu Excavator")
+writeColours(colours.yellow, colours.brown, colours.yellow)
 
 -- Beryl Excavator
 newRow()
-colouredTextCentered(colours.blue, "Beryl Excavator", 15)
-writeColours(colours.blue, colours.yellow, colours.blue, 16)
+colouredTextCentered(colours.blue, "Beryl Excavator")
+writeColours(colours.blue, colours.yellow, colours.blue)
 
 -- Nether Excavator
 newRow()
-colouredTextCentered(colours.red, "Nether Excavator", 16)
-writeColours(colours.red, colours.red, colours.red, 11)
+colouredTextCentered(colours.red, "Nether Excavator")
+writeColours(colours.red, colours.red, colours.red)
 
 -- Enderslime
 newRow()
-colouredTextCentered(colours.purple, "Enderslime", 10)
-writeColours(colours.purple, colours.purple, colours.purple, 20)
+colouredTextCentered(colours.purple, "Enderslime")
+writeColours(colours.purple, colours.purple, colours.purple)
 
--- 
+setNextMonitor()
 
--- System Import
+-- I Do this shit alone
 --newRow()
---colouredTextCentered(colours.white, "System Import", 13)
---writeColours(colours.cyan, colours.orange, colours.yellow, 18)
+colouredTextCentered(colours.white, "I Do this shit alone 1")
+writeColours(colours.cyan, colours.orange, colours.yellow)
+
+-- I Do this shit alone 2
+newRow()
+colouredTextCentered(colours.white, "I Do this shit alone 2")
+writeColours(colours.yellow, colours.orange, colours.cyan)
 
 -- Sharing
 newRow()
-colouredTextCentered(colours.white, "Sharing Pouch", 13)
-writeColours(colours.cyan, colours.red, colours.yellow, 15)
+colouredTextCentered(colours.white, "Sharing Pouch")
+writeColours(colours.cyan, colours.red, colours.yellow)
+
+-- Crude Oil
+newRow()
+colouredTextCentered(colours.black, "Crude Oil")
+writeColours(colours.black, colours.black, colours.black)
+
+-- Lava
+newRow()
+colouredTextCentered(colours.red, "Lava")
+writeColours(colours.red, colours.orange, colours.red)
+
+-- Liquid Deuterium 
+newRow()
+colouredTextCentered(colours.red, "Liquid Deuterium")
+writeColours(colours.red, colours.red, colours.red)
+
+-- Liquid Starlight 
+newRow()
+colouredTextCentered(colours.white, "Liquid Starlight")
+writeColours(colours.white, colours.blue, colours.white)
+
+-- Ethanol
+newRow()
+colouredTextCentered(colours.orange, "Ethanol")
+writeColours(colours.orange, colours.orange, colours.orange)
+
+-- Ectoplasm
+newRow()
+colouredTextCentered(colours.red, "Ectoplasm")
+writeColours(colours.white, colours.yellow, colours.blue)
+
+-- Aquamarine
+newRow()
+colouredTextCentered(colours.cyan, "Aquamarine")
+writeColours(colours.blue, colours.yellow, colours.blue)
+
+-- Nebu 
+newRow()
+colouredTextCentered(colours.yellow, "Nebu")
+writeColours(colours.yellow, colours.brown, colours.yellow)
+
 
 newRow()
+colouredTextCentered(colours.orange, "Lubricant")
+writeColours(colours.orange, colours.yellow, colours.orange)
+
+-- Komodo Dragon Spit
+newRow()
+colouredTextCentered(colours.lime, "Komodo Dragon Spit")
+writeColours(colours.blue, colours.green, colours.blue)
+
+setNextMonitor()
+
+-- Will Crystal
+colouredTextCentered(colours.cyan, "Will Crystal")
+writeColours(colours.cyan, colours.purple, colours.red)
+
+-- Blazing Blood
+newRow()
+colouredTextCentered(colours.orange, "Blazing Blood")
+writeColours(colours.orange, colours.red, colours.orange)
+
+newRow()
+colouredTextCentered(colours.brown, "Liquid Meat")
+writeColours(colours.brown, colours.brown, colours.brown)
+
+newRow()
+colouredTextCentered(colours.lime, "Liquid Tritium")
+writeColours(colours.lime, colours.lime, colours.lime)
+
+newRow()
+colouredTextCentered(colours.lime, "Essence (import)")
+writeColours(colours.lime, colours.grey, colours.lime)
+
+newRow()
+colouredTextCentered(colours.red, "Life Essence (Blut)")
+writeColours(colours.red, colours.black, colours.red)
+
+newRow()
+colouredTextCentered(colours.yellow, "Djinn Miner 1")
+writeColours(colours.yellow, colours.yellow, colours.yellow)
+
+newRow()
+colouredTextCentered(colours.yellow, "Djinn Miner 2")
+writeColours(colours.orange, colours.orange, colours.orange)
+
+newRow()
+colouredTextCentered(colours.green, "Pneu. Essence")
+writeColours(colours.lime, colours.green, colours.lime)
+
 -- Unused chest
-colouredTextCentered(colours.grey, "Unused Chest", 12) -- length: 12
-writeColours(colours.blue, colours.green, colours.blue, 15) -- lenth: 15
+newRow()
+colouredTextCentered(colours.grey, "Unused Chest") -- length: 12
+writeColours(colours.blue, colours.green, colours.blue) -- lenth: 15
+
+
