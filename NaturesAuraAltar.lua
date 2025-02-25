@@ -1,5 +1,5 @@
-local redstoneSide = "back"
-local inputSide = "left"
+local redstoneSide = "left"
+local inputSide = "back"
 local altarSide = "right"
 local outputSide = "top"
 
@@ -24,7 +24,7 @@ while true do
             print("wait for output ...")
             while true do
                 local newItem = altar.getItemDetail(1)
-                if newItem.name ~= savedName then
+                if newItem.name ~= savedName or (newItem.name == "naturesaura:aura_cache" and newItem.durability == 0) then
                     -- move item into output
                     print("output found")
                     altar.pushItems(outputSide, 1)

@@ -1,6 +1,10 @@
 local pedestalType = "ars_nouveau:arcane_pedestal"
 local apparatusType = "ars_nouveau:enchanting_apparatus"
 
+--local inputChestName = "quark:variant_chest_3"
+--local outputChestName = "quark:variant_chest_2"
+--local redstoneSide = "front"
+
 local inputChestName = "minecraft:chest_4"
 local outputChestName = "minecraft:chest_3"
 local redstoneSide = "back"
@@ -107,6 +111,7 @@ local recipes = {
 		[8] = "betterendforge:crystal_shards",
 	}
 }
+
 ---@type string[]
 --[[local centerItems = {
 	"ars_nouveau:wixie_shards",
@@ -127,10 +132,23 @@ local recipes = {
 	"betterendforge:terminite_chestplate",
 	"betterendforge:terminite_leggings",
 	"betterendforge:terminite_helmet",
-	"atum:relic_non_dirty/ring"
+	"atum:relic_non_dirty/ring",
+	"betterendforge:hydralux_petal",
+	"emendatusenigmatica:arcane_block",
+	"forge:seeds",
+	"ars_nouveau:ring_of_greater_discount",
+	"ars_nouveau:ring_of_lesser_discount",
+	"immersiveengineering:graphite_electrode",
+	"ars_nouveau:sylph_shards",
+	"eidolon:basic_belt",
+	"occultism:sacrificial_bowl",
+	"botania:livingwood_twig",
+	"bloodmagic:holy_water_anointment"
 }]]--
 local centerItems = {
-	"naturesaura:aura_bottle"
+	"naturesaura:aura_bottle",
+	"botania:rune_mana",
+	"pedestals:coin/breaker"
 }
 
 ---@param item string

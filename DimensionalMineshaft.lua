@@ -1,6 +1,6 @@
-local djinnInput = "enderstorage:ender_chest_1"
-local djinnOutput = "entangled:tile_13"
-local output = "immersiveengineering:woodencrate_5"
+local djinnInput = "enderstorage:ender_chest_0"
+local djinnOutput = "entangled:tile_12"
+local output = "immersiveengineering:woodencrate_3"
 
 local minItemDamage = 3
 
@@ -32,7 +32,7 @@ while true do
 				if chestItem then
 					--local chestItemComplex = djinnChest.getItemDetail(chestSlot)
 					--if chestItemComplex.maxDamage - chestItemComplex.damage > minItemDamage then
-						mineshaft.pullItems(djinnInput, chestSlot, 1, 1)
+						--mineshaft.pullItems(djinnInput, chestSlot, 1, 1)
 					--end
 				end
 			end

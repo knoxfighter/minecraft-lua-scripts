@@ -22,6 +22,8 @@ while true do
 			  or item.name == "minecraft:prismarine"
 			  or item.name == "astralsorcery:aquamarine"
 			  or item.name == "minecraft:oak_log"
+			  or item.name == "minecraft:glowstone_dust"
+			  or item.name == "minecraft:glowstone"
 			  then
 				-- continue
 			else
